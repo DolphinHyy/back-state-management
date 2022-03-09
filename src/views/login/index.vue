@@ -48,8 +48,10 @@
         </el-form-item>
 
         <!-- Submit -->
-        <el-button :loading="loading" type="primary" style="width:10%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-        <el-button :loading="loading" type="primary" style="width:10%;margin-bottom:30px;" @click.native.prevent="handleLogin">Reset</el-button>
+        <div class="submit">
+          <el-button :loading="loading" type="primary" style="width:15%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+          <el-button :loading="loading" type="primary" style="width:15%;margin-bottom:30px;" @click.native.prevent="handleLogin">Reset</el-button>
+        </div>
 
         <div class="tips">
           <span style="margin-right:20px;">username: admin</span>
@@ -62,23 +64,32 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
+// import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
+    // const validateUsername = (rule, value, callback) => {
+    //   if (!validUsername(value)) {
+    //     callback(new Error('Please enter the correct user name'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
+    const usernameTest = (rule, value, callback) => {
+      const usernameReg = /^[a-z][a-z0-9]{4,11}$/
+      if (usernameReg.test(value)) {
         callback()
+      } else {
+        callback('请输入正确的用户名')
       }
     }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else {
+    const passwordTest = (rule, value, callback) => {
+      const passwordReg = /^[a-z0-9]{6,16}$/i
+      if (passwordReg.test(value)) {
         callback()
+      } else {
+        callback('密码格式不正确')
       }
     }
     return {
@@ -87,8 +98,8 @@ export default {
         password: '111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [{ required: true, trigger: 'blur' }, { validator: usernameTest }],
+        password: [{ required: true, trigger: 'blur' }, { validator: passwordTest }]
       },
       loading: false,
       passwordType: 'password',
@@ -150,8 +161,14 @@ $cursor: #fff;
 
 .main{
   background-color: #fff;
-  width: 700px;
+  width: 450px;
   height: 300px;
+  padding:0 20px 0;
+  border-radius: 8px;
+  .submit{
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* reset element-ui css */
