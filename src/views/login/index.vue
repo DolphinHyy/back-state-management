@@ -48,8 +48,8 @@
         </el-form-item>
 
         <!-- Submit -->
-        <el-button :loading="loading" type="primary" style="width:20%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-        <el-button :loading="loading" type="primary" style="width:20%;margin-bottom:30px;" @click.native.prevent="handleLogin">Reset</el-button>
+        <el-button :loading="loading" type="primary" style="width:10%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+        <el-button :loading="loading" type="primary" style="width:10%;margin-bottom:30px;" @click.native.prevent="handleLogin">Reset</el-button>
 
         <div class="tips">
           <span style="margin-right:20px;">username: admin</span>
@@ -150,6 +150,8 @@ $cursor: #fff;
 
 .main{
   background-color: #fff;
+  width: 700px;
+  height: 300px;
 }
 
 /* reset element-ui css */
