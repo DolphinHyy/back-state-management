@@ -2,15 +2,16 @@
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
-      <div class="main">
-
+      <div class="title-box">
         <!-- Title -->
         <div class="title-container">
           <h3 class="title">
             <img src="@/assets/common/logo.png" alt="">
           </h3>
         </div>
+      </div>
 
+      <div class="main">
         <!-- Main -->
         <el-form-item prop="username">
           <span class="svg-container">
@@ -50,7 +51,7 @@
         <!-- Submit -->
         <div class="submit">
           <el-button :loading="loading" type="primary" style="width:15%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-          <el-button :loading="loading" type="primary" style="width:15%;margin-bottom:30px;" @click.native.prevent="handleLogin">Reset</el-button>
+          <el-button :loading="loading" type="reset" style="width:15%;margin-bottom:30px;" native-type="reset">Reset</el-button>
         </div>
 
         <div class="tips">
@@ -85,7 +86,7 @@ export default {
       }
     }
     const passwordTest = (rule, value, callback) => {
-      const passwordReg = /^[a-z0-9]{6,16}$/i
+      const passwordReg = /^\w{6,16}$/i
       if (passwordReg.test(value)) {
         callback()
       } else {
@@ -95,7 +96,7 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '111111'
+        password: '123456'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur' }, { validator: usernameTest }],
@@ -129,8 +130,9 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          console.log(this.loginForm)
           this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+            // this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
             this.loading = false
@@ -163,7 +165,7 @@ $cursor: #fff;
   background-color: #fff;
   width: 450px;
   height: 300px;
-  padding:0 20px 0;
+  padding:100px 20px 0;
   border-radius: 8px;
   .submit{
     width: 100%;
@@ -244,6 +246,13 @@ $light_gray:#eee;
     display: inline-block;
   }
 
+.title-box{
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+  margin: 0 auto;
+  transform: translateY(50%);
   .title-container {
     position: relative;
 
@@ -253,8 +262,12 @@ $light_gray:#eee;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
+      img{
+        width: 100%;
+      }
     }
   }
+}
 
   .show-pwd {
     position: absolute;
