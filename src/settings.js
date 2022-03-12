@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '人力资源管理-vue',
+  title: '后台管理系统-vue',
 
   /**
    * @type {boolean} true | false
