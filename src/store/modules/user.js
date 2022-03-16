@@ -1,5 +1,5 @@
 import { loginAPI } from '@/api/user.js'
-import { getToken, setToken } from '@/utils/auth'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const state = {
   // token: JSON.parse(localStorage.getItem('BSM_TOKEN')) || null
@@ -11,18 +11,25 @@ const mutations = {
     state.token = payload
     // localStorage.setItem('BSM_TOKEN', JSON.stringify(payload))
     setToken(payload)
+  },
+  logOut(state) {
+    removeToken()
+    state.token = null
   }
 }
 const actions = {
-  async login(content, payload) {
+  async login(context, payload) {
     try {
       // console.log(payload)
       const res = await loginAPI(payload)
       // console.log(data.data.token)
-      content.commit('setToken', res.token)
+      context.commit('setToken', res.token)
     } catch (error) {
       console.dir(error)
     }
+  },
+  logout(context) {
+    context.commit('logOut')
   }
 }
 

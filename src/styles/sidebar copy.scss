@@ -8,19 +8,18 @@
   }
 
   .sidebar-container {
+    position: fixed;
+    // display: inline-block;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
-    min-height: 100%;
-    position: fixed;
-    flex-direction: column;
+    height: 100%;
     font-size: 0px;
-    top: 0px;
+    top: 60px;
     bottom: 0;
     left: 0;
-    // z-index: 1;
+    z-index: 1001;
     overflow: hidden;
-    margin-top: 60px;
 
     // reset element-ui css
     .horizontal-collapse-transition {
@@ -99,7 +98,9 @@
     }
 
     .main-container {
-      margin-left: 54px;
+      // margin-left: 54px;
+      position: relative;
+      // text-align: left;
     }
 
     .submenu-title-noDropdown {
@@ -226,15 +227,6 @@
     }
   }
 }
-.hamburger-container {
-  line-height: 46px;
-  height: 100%;
-  float: left;
-  cursor: pointer;
-  transition: background .3s;
-  -webkit-tap-highlight-color:transparent;
-
-  &:hover {
-    background: rgba(0, 0, 0, .025)
-  }
-}
+// .main-body{
+//   display: flex;
+// }

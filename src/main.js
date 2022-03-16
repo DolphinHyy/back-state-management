@@ -27,7 +27,8 @@ import '@/permission' // permission control
 //   const { mockXHR } = require('../mock')
 //   mockXHR()
 // }
-
+document.documentElement.style.overflow = 'hidden'
+// document.body.style.overflow = 'hidden'
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明

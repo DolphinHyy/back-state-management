@@ -8,11 +8,11 @@
       </app-link>
     </template>
 
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <el-submenu ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
-      <sidebar-item
+      <sidebar-link
         v-for="child in item.children"
         :key="child.path"
         :is-nest="true"
@@ -28,12 +28,13 @@
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 import Item from './Item'
-import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'
+// import SidebarLink from '@/layout/components/Sidebar/SidebarLink'
+import SidebarLink from './SidebarLink.vue'
 
 export default {
   name: 'SidebarItem',
-  components: { Item, AppLink },
+  components: { Item, SidebarLink },
   mixins: [FixiOSBug],
   props: {
     // route object

@@ -1,5 +1,16 @@
 <template>
   <section class="app-main">
+    <Addr />
+    <!-- <div>
+      <strong>首页</strong>
+      <span class="nav">
+        <i class="el-icon-arrow-right" />
+        <span>用户管理</span>
+        <i class="el-icon-arrow-right" />
+        <span>用户列表</span>
+      </span>
+    </div> -->
+
     <transition name="fade-transform" mode="out-in">
       <router-view :key="key" />
     </transition>
@@ -7,8 +18,11 @@
 </template>
 
 <script>
+import Addr from './Addr.vue'
+
 export default {
   name: 'AppMain',
+  components: { Addr },
   computed: {
     key() {
       return this.$route.path
@@ -24,6 +38,11 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
+  padding: 20PX;
+  background-color: #eaedf1;
+}
+.nav{
+  color:#606266;
 }
 .fixed-header+.app-main {
   padding-top: 50px;
