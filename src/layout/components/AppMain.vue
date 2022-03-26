@@ -1,16 +1,6 @@
 <template>
   <section class="app-main">
     <Addr />
-    <!-- <div>
-      <strong>首页</strong>
-      <span class="nav">
-        <i class="el-icon-arrow-right" />
-        <span>用户管理</span>
-        <i class="el-icon-arrow-right" />
-        <span>用户列表</span>
-      </span>
-    </div> -->
-
     <transition name="fade-transform" mode="out-in">
       <router-view :key="key" />
     </transition>

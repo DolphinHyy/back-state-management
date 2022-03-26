@@ -18,7 +18,8 @@ request.interceptors.request.use(function(config) {
       router.push('/login')
       return Promise.reject(new Error('TOKEN 过期'))
     }
-    config.headers.Authorization = 'Bearer ' + getToken()
+    // console.log(getToken())
+    config.headers.Authorization = getToken()
   }
   return config
 }, function(error) {
@@ -29,8 +30,8 @@ request.interceptors.request.use(function(config) {
 // 添加响应拦截器
 request.interceptors.response.use(function(response) {
   // 对响应数据做点什么
-  console.log(response)
-  if (response.data.meta.status === 200) {
+  if (response.data.meta.status >= 200 && response.data.meta.status < 300) {
+    // console.log(response)
     return response.data.data
   } else {
     return Promise.reject(new Error(response.data.meta.msg))

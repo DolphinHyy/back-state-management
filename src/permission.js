@@ -8,11 +8,6 @@ import store from '@/store'
 router.beforeEach((to, from, next) => {
   const token = store.getters.token
   const whiteList = ['/login', '/404']
-  // console.log('--------@/permission.js--------7')
-  // console.log('to', to)
-  // console.log('from', from)
-  // console.log('next', next)
-  // console.log('--------@/permission.js--------11')
   if (token) {
     if (to.path === '/login') return next('/')
     next()
@@ -24,18 +19,3 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
-
-// router.beforeEach((to, from, next) => {
-//   const token = store.getters.token
-//   const whiteList = ['/login', '/404']
-//   if (token) {
-//     if (to.path === '/login') return next('/')
-//     next()
-//   } else {
-//     if (whiteList.includes(to.path)) {
-//       next()
-//     } else {
-//       next('/login')
-//     }
-//   }
-// })
